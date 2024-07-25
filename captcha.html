@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Captcha JS API</title>
+    <script src="https://56400c96e50b.us-east-1.captcha-sdk.awswaf.com/56400c96e50b/jsapi.js"></script>
+</head>
+
+<body>
+    <div id="captcha-container"></div>
+    <button id="fetch-data-btn" style="display: none" onClick="fetchProtectedData()">Fetch data</button>
+    <!-- <div id="pets-container"></div> -->
+    <div id="error-container"></div>
+
+    <script>
+        function setError(error) {
+            document.getElementById("error-container").innerHTML = error.message;
+        }
+
+        const container = document.getElementById('captcha-container');
+        AwsWafCaptcha.renderCaptcha(container, {
+            apiKey: "SCDWVv6hIUw0a4wCccTqr7V6p2apLLSNIKUNgROgbeSeiGjvOrwQg9NlHOcRne2LYq7Gj8prjk1P/j/c8LgET1Oerp8Vcm4wL1YPSsSCW3i5SuKi1sSDVIJ9TRINtRVwkbnhKljujYp8L55ityjNTMeq1ce39RaQr2QYyFrIIl1Pi/nSNWPc6zAh8B3bPxwYdXEOHwjqnMER6XP4vxpe8WhFjbvWLZTFGhjiC7SfRHDTiWU8tcJ9Ztd80qfJqqQ0T6qmkBLSdWrkDW7KdI0BfohqOuCuxQeZK7J0vgh80mm2q4Ul72olhzPHNO91NFGhfj67NLfA6YxtzvR4gHsiCJtf0SG2+vpMJbyOj1CrVWbdIVg4BeOb8KsYd8935Ll1aY8zQ6X8VC3Tfi8vvrzsrztqPZR8BvrmEkaTKBWYIUyq7kQDc/S8Xoc5fG04gKN5bra573dW0xG41PefuyyomkGynnQZaYnVLpWA6zjdTcrv+hScQsLDSxug3QX+ve3JWKJnFWtDE7yTUhbRJ8Zxf01+PXYIKSZTAeFOymAH+US7vw6yl3MgNzkxxo1VrUaQbBJSCvM4oTR/gqQpGzcfNI/qTJedlJvmJkTibqG3+/Nzx57lRO6stTr0WOw62KtffLS77KU5O2pz3iQTAduXjPyoRDDto06Kqw0IcguHREs=_0_1",
+            onSuccess: () => {
+                //alert("Success!");
+                document.getElementById("fetch-data-btn").style.display = 'block';
+            },
+            onError: setError,
+        });
+
+        function fetchProtectedData() {
+            AwsWafIntegration.fetch('./pets', {
+                method: 'GET'
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('pets-container').textContent = JSON.stringify(data);
+                })
+                .catch(setError);
+        }
+    </script>
+</body>
+
+</html>

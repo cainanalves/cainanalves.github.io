@@ -3,6 +3,7 @@
 
 <head>
     <title>Captcha JS API</title>
+    <script src="https://56400c96e50b.us-east-1.captcha-sdk.awswaf.com/56400c96e50b/jsapi.js"></script>
     <style>
         body, html {
             margin: 0;
@@ -12,20 +13,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
+            background-color: transparent; /* #f0f0f0 */
         }
         #captcha-container {
             width: 90%;
-            max-width: 600px;
-            height: 90%;
-            max-height: 600px;
+            min-height: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 8px;
-            padding: 20px;
+            padding: 30px;
+        }
+        awswaf-captcha {
+            width: 100% !important;
+            height: 100% !important;
         }
         #fetch-data-btn {
             margin-top: 20px;
@@ -37,7 +40,6 @@
             color: red;
         }
     </style>
-    <script src="https://56400c96e50b.us-east-1.captcha-sdk.awswaf.com/56400c96e50b/jsapi.js"></script>
 </head>
 
 <body>

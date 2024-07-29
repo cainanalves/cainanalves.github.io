@@ -3,6 +3,40 @@
 
 <head>
     <title>Captcha JS API</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        #captcha-container {
+            width: 90%;
+            max-width: 600px;
+            height: 90%;
+            max-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        #fetch-data-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #error-container {
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
     <script src="https://56400c96e50b.us-east-1.captcha-sdk.awswaf.com/56400c96e50b/jsapi.js"></script>
 </head>
 
@@ -41,7 +75,7 @@
 
         function sendMessageToFlutter(type, message) {
             if (window.flutter_inappwebview) {
-                window.flutter_inappwebview.callHandler('fromJavaScript', {type, message});
+                window.flutter_inappwebview.callHandler('callbackApp', {type, message});
             }
         }
     </script>
